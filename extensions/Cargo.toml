@@ -1,13 +1,16 @@
 [package]
-
-name = "hello-world"
+name = "rustmotifs"
 version = "0.0.1"
-authors = ["James Salter <iteration@gmail.com>"]
+authors = ["Boris Pfahringer <bpnzltd@gmail.com>"]
 
 [dependencies]
-cpython = "*"
-interpolate_idents = "0.0.3"
+interpolate_idents = "*"
+
+[dependencies.cpython]
+git = "https://github.com/dgrunwald/rust-cpython.git"
+default-features = false
+features = ["python27-sys"]
 
 [lib]
-name = "helloworld"
+name = "rustmotifs"
 crate-type = ["dylib"]
