@@ -5,6 +5,7 @@ authors = ["Boris Pfahringer <bpnzltd@gmail.com>"]
 
 [dependencies]
 interpolate_idents = "*"
+bruteforce = { git = "file:///Users/boris/Documents/Motifs/code/bruteforce" }
 
 [dependencies.cpython]
 git = "https://github.com/dgrunwald/rust-cpython.git"

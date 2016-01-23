@@ -5,6 +5,9 @@
 
 use cpython::*;
 
+extern crate bruteforce;
+use bruteforce::motifs::{id_to_network, MotifId};
+
 py_module_initializer!(rustmotifs, |py, m| {
     try!(m.add(py, "__doc__", "Module documentation string"));
     try!(m.add(py, "run", py_fn!(run(args: PyList))));
@@ -17,8 +20,11 @@ fn run(py: Python, xss: PyList) -> PyResult<PyObject> {
     for xs in xss.iter(py) {
         let xs: PyList  = try!(xs.cast_into(py));
         for x in xs.iter(py) {
-            println!("{}", try!(x.extract::<u64>(py)));
+            let n = try!(x.extract::<MotifId>(py));
+            print!("{} ", n);
+            print!("{:?} ", id_to_network(3, n));
         }
+        println!("");
     }
     Ok(py.None())
 }
