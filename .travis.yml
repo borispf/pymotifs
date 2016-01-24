@@ -6,6 +6,7 @@ env:
 sudo: false
 install:
   - python -c "import sysconfig; print('\n'.join(map(repr,sorted(sysconfig.get_config_vars().items()))))"
+  - pip install -r dev-requirements.txt
   - mkdir ~/rust-installer
   - curl -sL https://static.rust-lang.org/rustup.sh -o ~/rust-installer/rustup.sh
   - sh ~/rust-installer/rustup.sh --prefix=~/rust --spec=$RUST_VERSION -y --disable-sudo
