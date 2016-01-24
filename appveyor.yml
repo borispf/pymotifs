@@ -19,6 +19,7 @@ test_script: off
 
 build_script:
  - "%PYTHON%\\python.exe setup.py build_py"
+ - "cargo build --manifest-path extensions/Cargo.toml --release --verbose"
  - "%PYTHON%\\python.exe setup.py build_rust"
 
 after_test:
