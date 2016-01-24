@@ -1,4 +1,8 @@
 def hello():
     import rustmotifs_binding
-    rustmotifs_binding.run([[1,2],[3,4]])
+    return rustmotifs_binding.run([
+        [0,1,2],
+        [0,0,-1],
+        [0,0,0]
+    ])
 
