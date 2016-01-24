@@ -1,11 +1,11 @@
 [package]
-name = "rustmotifs"
+name = "rustmotifs_binding"
 version = "0.0.1"
 authors = ["Boris Pfahringer <bpnzltd@gmail.com>"]
 
 [dependencies]
 interpolate_idents = "*"
-bruteforce = { git = "file:///Users/boris/Documents/Motifs/code/bruteforce" }
+rustmotifs = { git = "https://github.com/borispf/rustmotifs.git" }
 
 [dependencies.cpython]
 git = "https://github.com/dgrunwald/rust-cpython.git"
@@ -13,5 +13,5 @@ default-features = false
 features = ["python27-sys"]
 
 [lib]
-name = "rustmotifs"
+name = "rustmotifs_binding"
 crate-type = ["dylib"]

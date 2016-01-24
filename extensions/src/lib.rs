@@ -5,10 +5,10 @@
 
 use cpython::*;
 
-extern crate bruteforce;
-use bruteforce::motifs::{id_to_network, MotifId};
+extern crate rustmotifs;
+use rustmotifs::motifs::{id_to_network, MotifId};
 
-py_module_initializer!(rustmotifs, |py, m| {
+py_module_initializer!(rustmotifs_binding, |py, m| {
     try!(m.add(py, "__doc__", "Module documentation string"));
     try!(m.add(py, "run", py_fn!(run(args: PyList))));
     // try!(add_val(py, &m));
