@@ -1,1 +1,2 @@
+wheel
 https://github.com/novocaine/rust-python-ext/archive/master.zip
