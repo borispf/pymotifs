@@ -23,7 +23,7 @@ test_script: off
 
 build_script:
  - "%PYTHON%\\python.exe setup.py build_py"
- - "cargo build --manifest-path extensions/Cargo.toml --release --verbose"
+ - "set PATH=C:\Python27-x64;%PATH%&& cargo build --manifest-path extensions/Cargo.toml --verbose"
  - "%PYTHON%\\python.exe setup.py build_rust"
 
 after_test:
