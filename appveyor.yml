@@ -33,7 +33,7 @@ install:
 build_script:
   - "python setup.py build"
   - "cargo build --manifest-path extensions/Cargo.toml --package cpython --verbose"
-  - "cargo build --manifest-path extensions/Cargo.toml --verbose"
+#   - "cargo build --manifest-path extensions/Cargo.toml --verbose"
   - "python setup.py build_rust"
 
 # TODO(borispf)
