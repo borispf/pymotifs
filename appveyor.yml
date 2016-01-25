@@ -1,23 +1,10 @@
 environment:
-  global:
-    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
-    # /E:ON and /V:ON options are not enabled in the batch script intepreter
-    # See: http://stackoverflow.com/a/13751649/163740
-    CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\appveyor\\run_with_env.cmd"
   matrix:
     - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7.x"
-      PYTHON_ARCH: "64"
       TARGET: x86_64-pc-windows-msvc
 
 install:
-  - ECHO "Filesystem root:"
-  - ps: "ls \"C:/\""
-
-  - ECHO "Installed SDKs:"
-  - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
-
-  # Prepend newly installed Python to the PATH of this build (this cannot be
+  # Prepend newly Python to the PATH of this build (this cannot be
   # done from inside the powershell script as it would require to restart
   # the parent CMD process).
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
@@ -34,8 +21,7 @@ install:
   # compiled extensions and are not provided as pre-built wheel packages,
   # pip will build them from source using the MSVC compiler matching the
   # target Python version and architecture
-  - "%CMD_IN_ENV% pip install -r dev-requirements.txt"
-  - "%PYTHON%\\python.exe -m pip install -r dev-requirements.txt"
+  - "pip install -r dev-requirements.txt"
 
   # Download and install rust
   - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.exe"
@@ -45,15 +31,16 @@ install:
   - cargo -V
 
 build_script:
-  - "%CMD_IN_ENV% python setup.py build"
-  - "%CMD_IN_ENV% cargo build --manifest-path extensions/Cargo.toml --verbose"
-  - "%CMD_IN_ENV% python setup.py build_rust"
+  - "python setup.py build"
+  - "cargo build --manifest-path extensions/Cargo.toml --package cpython --verbose"
+  - "cargo build --manifest-path extensions/Cargo.toml --verbose"
+  - "python setup.py build_rust"
 
 # TODO(borispf)
 test_script: off
 
 after_test:
-  - "%PYTHON%\\python.exe setup.py bdist_wheel"
+  - "python setup.py bdist_wheel"
   - ps: "ls dist"
 
 artifacts:
